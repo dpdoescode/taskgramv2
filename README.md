@@ -69,7 +69,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-[![Video Walkthrough](https://img.youtube.com/vi/n19ZWR-B6So/0.jpg)](https://youtu.be/n19ZWR-B6So)
+[![Video Walkthrough](https://img.youtube.com/vi/CQh48UYCkJc/0.jpg)](https://youtu.be/CQh48UYCkJc)
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with [Kap](https://getkap.co/) for macOS
