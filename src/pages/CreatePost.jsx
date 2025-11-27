@@ -1,4 +1,5 @@
 import { supabase } from '../client'
+import './CreatePost.css'
 import { useState } from 'react'
 
 const CreatePost = () => {
