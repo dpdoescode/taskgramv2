@@ -31,10 +31,10 @@ const CreatePost = () => {
 
     const handleChange = (event) => {
         const {name, value} = event.target
-        setPost = ( (prev) => {       // prev ensures we save previous stored value of state! It can be lost if too much put at once.
+        setPost( (prev) => {
             return {
-            ...prev,
-            [name] : value, // assigns name attribute of post contents to the value!
+                ...prev,
+                [name]:value,
             }
         })
     }
