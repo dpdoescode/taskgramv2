@@ -19,22 +19,21 @@ const EditPost = () => {
 
     }
 
+    const deletePost = async (event) => {
+        event.preventDefault()
 
+        await supabase
+            .from('posts')
+            .delete() // indicates delete operation in CRUD.
+            .eq('id', id) // ensures only the post with the matching id is deleted.
+        window.location = "/"
 
-
-
-
-
-
-
-
-
-
+    }
 
     return (
         <div>
             <input type="submit" value="Submit" onClick={updatePost} />
-
+            <button className="deleteButton" onClick={deletePost}>Delete</button>
         </div>
     )
 
