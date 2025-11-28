@@ -1,5 +1,5 @@
-import './App.css';
 import React from 'react';
+import './App.css';
 import { useRoutes } from 'react-router-dom'
 import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
@@ -34,37 +34,37 @@ const App = () => {
         'description':descr},
     ]
 
-    let element = useRoutes([
+    let element = useRoutes([ // React router function that selects correct screen based on URL
         {
-            path: "/",
-            element:<ReadPosts data={posts}/>
+            path: "/", 
+            element:<ReadPosts data={posts}/> // show ReadPosts
         },
         {
             path:"/edit/:id",
-            element:<EditPost data={posts} />
+            element:<EditPost data={posts} /> // /edit/whateverid -> show EditPost
         },
         {
             path:"/new",
-            element:<CreatePost />
+            element:<CreatePost /> // show CreatePost
         }
     ]);
 
     // Setup startup display
     return (
-        <div classname="App">
+        <div className="App">
 
-            <div classname="header">
+            <div className="header">
                 <h1>Hello World!</h1>
                 <Link to="/">
-                    <button classname="headerBtn"> Leaderboard </button>
+                    <button className="headerBtn"> Leaderboard </button>
                 </Link>
 
                 <Link to="/new">
-                    <button classname="headerBtn"> Create Post </button>
+                    <button className="headerBtn"> Create Post </button>
                 </Link>
 
             </div>
-            {element}
+            {element} {/* Where I display it */}
         </div>
     )
 }

@@ -6,7 +6,7 @@ const ReadPosts = (props) => {
     const [posts, setPosts] = useState([])
 
     useEffect (() => {
-        const fetchPost = async () => {
+        const fetchPosts = async () => {
             const {data} = await supabase
                 .from('posts')
                 .select() // return database entires once inserted into database. return value -> data
@@ -14,12 +14,20 @@ const ReadPosts = (props) => {
 
             setPosts(data)
         }
+        // database posts from Supabase
+            // call the async function to fetch posts from Supabase
         fetchPosts()
-        // setPosts(props.data) // updates state variable 'posts' with data passed from parent component.
+        // .then(() => {
+        //     if (posts.length === 0){
+        //     // hard-coded posts from App.jsx
+        //         setPosts(props.data) // updates state variable 'posts' with data passed from parent component.
+        //     }
+
+        
     }, [props]) //dependency array includes props to ensure effect runs when props change.
 
     return (
-        <div classname="ReadPosts">
+        <div className="ReadPosts">
             {
                 posts && posts.length > 0
                     ? [... posts] // done to prevent mutating array posts (we create copy)

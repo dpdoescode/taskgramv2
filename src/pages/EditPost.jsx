@@ -1,7 +1,29 @@
 import { supabase } from '../client'
+import {useState} from 'react'
+import { useParams } from 'react-router-dom'
+import './EditPost.css'
 
-const EditPost = () => {
-    
+const EditPost = ({data}) => {
+    const {id} = useParams()
+    const [post, setPost] = useState({
+        id:null, 
+        title: "", 
+        author: "",
+        description: "", 
+        image_url: "", 
+        upvotes: 0
+    });
+
+    const handleChange = (event) => {
+        const {name, value} = event.target
+        setPost( (prev) => {
+            return {
+                ...prev,
+                [name]:value,
+            }
+        })
+    }
+
     const updatePost = async (event) => {
         event.preventDefault()
 
@@ -32,8 +54,29 @@ const EditPost = () => {
 
     return (
         <div>
-            <input type="submit" value="Submit" onClick={updatePost} />
-            <button className="deleteButton" onClick={deletePost}>Delete</button>
+            <form>
+                <label htmlFor="title">Title</label> <br />
+                <input type="text" id="title" name="title" onChange={handleChange} /><br />
+                <br/>
+
+                <label htmlFor="author">Author</label> <br />
+                <input type="text" id="author" name="author" onChange={handleChange} /><br />
+                <br/>
+
+                <label htmlFor="image_url">Image URL</label> <br />
+                <input type="text" id="image_url" name="image_url" onChange={handleChange} /><br />
+                <br/>
+
+                <label htmlFor="description">Description</label> <br />
+                <textarea 
+                    name="description" 
+                    rows="5" 
+                    onChange={handleChange}>
+                </textarea><br />
+                <br />
+                <input type="submit" value="Submit" onClick={updatePost} />
+                <button className="deleteButton" onClick={deletePost}>Delete</button>
+            </form>
         </div>
     )
 
