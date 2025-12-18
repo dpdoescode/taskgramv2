@@ -54,7 +54,7 @@ const App = () => {
         <div className="App">
 
             <div className="header">
-                <h1>Hello World!</h1>
+                <h1>TaskGram</h1>
                 <Link to="/">
                     <button className="headerBtn"> Leaderboard </button>
                 </Link>

@@ -14,6 +14,7 @@ const Card = (props) =>  {
   return (
       <div className="Card">
           <Link to={'edit/'+ props.id}><img className="moreButton" alt="edit button" src={more} /></Link>
+          <img className="image_url" src={props.image_url}/>
           <h2 className="title">{props.title}</h2>
           <h3 className="author">{"by " + props.author}</h3>
           <p className="description">{props.description}</p>

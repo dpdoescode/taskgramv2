@@ -1,6 +1,6 @@
 .Card {
     backdrop-filter: blur(2px);
-    border: 1px solid rgba(153, 153, 153, 0.497);
+    border: 1px solid #4ECDC4;
     border-radius: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -8,22 +8,27 @@
     margin-bottom: 25px;
     width: 400px;
     text-align: center;
+    background-color: white;
+}
+
+.image_url {
+    max-width: 400px;
 }
 
 .title {
-    color:white;
+    color:black;
     padding-left:30px;
     font-size: 24px;
 }
 
 .author {
-    color:white;
+    color:black;
     margin-bottom: 20px;
     font-size: 20px;
 }
 
 .description {
-    color:white;  
+    color:#757575;  
     text-align: justify;
     text-justify: inter-word;
     padding-left: 30px;
