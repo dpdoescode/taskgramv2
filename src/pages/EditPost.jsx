@@ -11,7 +11,8 @@ const EditPost = ({data}) => {
         author: "",
         description: "", 
         image_url: "", 
-        upvotes: 0
+        likes_count: 0,
+        dislikes_count: 0
     });
 
     const handleChange = (event) => {

@@ -62,7 +62,7 @@ const CreatePost = () => {
                 </textarea><br />
                 <br />
 
-                <input type="submit" value="submit" onClick={createPost} />
+                <input type="submit" value="Submit" onClick={createPost} />
             
             </form>
         </div>

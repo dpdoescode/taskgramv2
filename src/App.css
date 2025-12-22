@@ -3,9 +3,9 @@
   font-weight:100; 
   font-style:normal;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
   justify-content: center;
-  background-color: white;
+  background-color: #E3F2FD;
   padding:20px;
   display: flex;
   flex-direction: row;
