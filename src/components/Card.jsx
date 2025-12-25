@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import './Card.css'
 import more from './more.png'
+import authorPfpBtn from './authorPfpBtn.png'
 import likeBtn from './likeBtn.png'
 import dislikeBtn from './dislikeBtn.png'
+import commentBtn from './commentBtn.png'
 import { Link } from 'react-router-dom'
 import { supabase } from '../client';
 
@@ -51,17 +53,34 @@ const Card = ({post}) =>  {
 
   return (
       <div className="Card">
-          <Link to={'edit/'+ post.id}><img className="moreButton" alt="edit button" src={more} /></Link>
-          <img className="image_url" src={post.image_url}/>
+          <Link to={'edit/'+ post.id}>
+            <img className="moreButton" alt="edit button" src={more} />
+          </Link>
+          <Link to={'profile/' + post.user_id}> 
+            <img className="authorPfpButton" alt="profile picture for the author of the post." src={authorPfpBtn}/>
+          </Link>
+          
+          <div className="imageContainer">
+            {post.image_url ? (
+              <img className="image_url" src={post.image_url} alt={post.title}/>
+            ) : (
+              <div className="image_placeholder">No Image</div>
+            )}
+          </div>
           <h2 className="title">{post.title}</h2>
           <h3 className="author">{"by " + post.author}</h3>
           <p className="description">{post.description}</p>
-          <button className="likeButton" onClick={() => handleVote(1)}> 
-            <img src={likeBtn} alt="like button"/> {likeCount}
-          </button>
-          <button className="likeButton" onClick={() => handleVote(-1)}> 
-            <img src={dislikeBtn} alt="dislike button"/> {dislikeCount}
-          </button>
+          <div className="buttonsContainer">
+            <button className="likeButton" onClick={() => handleVote(1)}> 
+              <img src={likeBtn} alt="like button"/> {likeCount}
+            </button>
+            <button className="dislikeButton" onClick={() => handleVote(-1)}> 
+              <img src={dislikeBtn} alt="dislike button"/> {dislikeCount}
+            </button>
+            <button className="commentButton">
+              <img src={commentBtn} alt="comment button"/> 1
+            </button>
+          </div>
       </div>
   );
 };

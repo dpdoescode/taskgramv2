@@ -4,6 +4,7 @@ import { useRoutes } from 'react-router-dom'
 import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
 import ReadPosts from './pages/ReadPosts'
+import Profile from './pages/Profile';
 import { Link } from 'react-router-dom'
 
 
@@ -44,8 +45,12 @@ const App = () => {
             element:<EditPost data={posts} /> // /edit/whateverid -> show EditPost
         },
         {
-            path:"/new",
+            path:"/new", 
             element:<CreatePost /> // show CreatePost
+        },
+        {
+            path:"/profile/:id",
+            element: <Profile data={posts} /> // /profile/whateverid -> show Profile
         }
     ]);
 
@@ -61,6 +66,10 @@ const App = () => {
 
                 <Link to="/new">
                     <button className="headerBtn"> Create Post </button>
+                </Link>
+
+                <Link to="/profile/:id">
+                    <button className="headerBtn"> Profile </button>
                 </Link>
 
             </div>
