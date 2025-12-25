@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
-import { useRoutes } from 'react-router-dom'
+import { useRoutes, useLocation } from 'react-router-dom'
 import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
 import ReadPosts from './pages/ReadPosts'
 import Profile from './pages/Profile';
 import { Link } from 'react-router-dom'
+import filterBtn from './components/filterBtn.png'
+import createPostBtn from './components/createPostBtn.png'
 
 
 const App = () => {
-
+    const location = useLocation();
     const descr = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
 
     const posts = [
@@ -73,7 +75,22 @@ const App = () => {
                 </Link>
 
             </div>
-            {element} {/* Where I display it */}
+
+            {location.pathname === "/" ? (
+                // Main posts page layout
+                <div className="content">
+                <div className="sidebar">
+                    <button className="sidebarBtn"><img src={createPostBtn} /></button>
+                    <button className="sidebarBtn"><img src={filterBtn} /></button>
+                </div>
+                <div className="posts-container">{element}</div>
+                </div>
+            ) : (
+                // Other pages take full width
+                <div className="full-page-container">{element}</div>
+            )}
+
+
         </div>
     )
 }
