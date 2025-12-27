@@ -1,17 +1,58 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
 import './App.css';
-import { useRoutes, useLocation } from 'react-router-dom'
+import { useRoutes, useLocation, Link } from 'react-router-dom'
+import { supabase } from './client';
+
 import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
 import ReadPosts from './pages/ReadPosts'
 import Profile from './pages/Profile';
-import { Link } from 'react-router-dom'
+
 import filterBtn from './components/filterBtn.png'
 import createPostBtn from './components/createPostBtn.png'
 
 
 const App = () => {
     const location = useLocation();
+    const [session, setSession] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    // Fetch session & subscribe to auth changes
+    useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+        setSession(data.session)
+        setLoading(false)
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        setSession(session)
+        setLoading(false);
+    })
+
+    return () => subscription.unsubscribe()
+    }, [])
+
+
+    // --- Handle Supabase loading ---
+    if (loading) return null
+
+    const googleSignIn = async () => {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: 
+                { scopes: 'https://www.googleapis.com/auth/calendar' },
+        });
+        if (error) {
+            console.error('Google sign-in error:', error);
+            alert('Error logging in with Google!');
+        }
+    };
+
+    const signOut = async () => {
+        await supabase.auth.signOut();
+        setSession(null);
+    };
+
     const descr = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
 
     const posts = [
@@ -56,12 +97,28 @@ const App = () => {
         }
     ]);
 
+    if (loading) return <div>Loading...</div>;
+
+    // --- LOGIN SCREEN ---
+    if (!session) {
+        return (
+        <div className="auth-screen">
+            <button onClick={googleSignIn}>Sign in with Google</button>
+        </div>
+        )
+    }
+
     // Setup startup display
     return (
         <div className="App">
-
             <div className="header">
                 <h1>TaskGram</h1>
+
+                <div className="auth">
+                    <h2>Welcome, {session.user.email}</h2>
+                    <button onClick={signOut}>Sign Out</button>
+                </div>
+                
                 <Link to="/">
                     <button className="headerBtn"> Leaderboard </button>
                 </Link>
@@ -89,10 +146,8 @@ const App = () => {
                 // Other pages take full width
                 <div className="full-page-container">{element}</div>
             )}
-
-
         </div>
-    )
-}
+    );
+};
 
 export default App
