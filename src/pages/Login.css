@@ -1,0 +1,20 @@
+.Login {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* centers whole stack */
+    align-items: center;
+}
+
+.Login h1 {
+    margin-bottom: 8px;
+}
+
+.Login p {
+    margin-bottom: 32px;
+}
+
+.googleBtn {
+    margin-top: 50px;
+    color: #4ECDC4;
+}

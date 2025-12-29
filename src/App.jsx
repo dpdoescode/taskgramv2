@@ -7,6 +7,8 @@ import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
 import ReadPosts from './pages/ReadPosts'
 import Profile from './pages/Profile';
+import Login from './pages/Login';
+import CreateEvent from './pages/CreateEvent';
 
 import filterBtn from './components/filterBtn.png'
 import createPostBtn from './components/createPostBtn.png'
@@ -31,22 +33,6 @@ const App = () => {
 
     return () => subscription.unsubscribe()
     }, [])
-
-
-    // --- Handle Supabase loading ---
-    if (loading) return null
-
-    const googleSignIn = async () => {
-        const { error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: 
-                { scopes: 'https://www.googleapis.com/auth/calendar' },
-        });
-        if (error) {
-            console.error('Google sign-in error:', error);
-            alert('Error logging in with Google!');
-        }
-    };
 
     const signOut = async () => {
         await supabase.auth.signOut();
@@ -94,17 +80,21 @@ const App = () => {
         {
             path:"/profile/:id",
             element: <Profile data={posts} /> // /profile/whateverid -> show Profile
+        },
+        {
+            path:"/create-event",
+            element: <CreateEvent session={session} /> // show CreateEvent
         }
+        
     ]);
 
+    // --- Handle Supabase loading ---
     if (loading) return <div>Loading...</div>;
 
     // --- LOGIN SCREEN ---
     if (!session) {
         return (
-        <div className="auth-screen">
-            <button onClick={googleSignIn}>Sign in with Google</button>
-        </div>
+            <Login />
         )
     }
 
@@ -114,22 +104,25 @@ const App = () => {
             <div className="header">
                 <h1>TaskGram</h1>
 
-                <div className="auth">
-                    <h2>Welcome, {session.user.email}</h2>
-                    <button onClick={signOut}>Sign Out</button>
-                </div>
-                
-                <Link to="/">
-                    <button className="headerBtn"> Leaderboard </button>
-                </Link>
+                <ul>
+                    <Link to="/">
+                        <button className="headerBtn"> Leaderboard </button>
+                    </Link>
 
-                <Link to="/new">
-                    <button className="headerBtn"> Create Post </button>
-                </Link>
+                    <Link to="/new">
+                        <button className="headerBtn"> Create Post </button>
+                    </Link>
 
-                <Link to="/profile/:id">
-                    <button className="headerBtn"> Profile </button>
-                </Link>
+                    <Link to="/profile/:id">
+                        <button className="headerBtn"> Profile </button>
+                    </Link>
+
+                    <Link to="/create-event">
+                        <button className="headerBtn">Create Event</button>
+                    </Link>
+
+                    <button className="signOutBtn" onClick={signOut}>Sign Out</button>
+                </ul>
 
             </div>
 

@@ -25,11 +25,8 @@
   margin-right: 10px;
 }
 
-.ReadPosts {
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+.signOutBtn {
+  background-color: darkred;
 }
 
 button {
