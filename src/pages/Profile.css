@@ -1,0 +1,56 @@
+.Profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.profileHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+
+  transform: translateX(-85%);
+}
+
+.profileHeader img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid #4ECDC4;
+}
+
+.profileHeaderTxt { 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;                                                                           
+}
+
+.profileName {
+  font-family:Avenir, "Century Gothic", sans-serif;
+  font-weight: 500;
+  font-style:normal;
+  font-size: calc(10px + 2.5vmin);
+  color: #1976D2;
+}
+
+.profileFriends {
+  font-family:Avenir, "Century Gothic", sans-serif;
+  font-weight:400; 
+  font-style:normal;
+  font-size: calc(10px + 2.2vmin);
+  color:#4ECDC4;
+}
+
+.Profile h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1F2937;
+}
+

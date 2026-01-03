@@ -1,0 +1,83 @@
+.Carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* viewport = window that only shows 3 cards */
+.carouselViewport {
+  width: calc(375px * 3);
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding: 20px 20px;
+
+}
+
+/* sliding row of cards */
+.carouselTrack {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.35s ease;
+}
+
+.carouselTrack.centered{
+    justify-content: center;
+}
+
+/* individual card */
+.taskCardContainer {
+  flex: 0 0 350px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* hover emphasis (ONLY the hovered card) */
+.taskCardContainer:hover {
+  transform: scale(1.08);
+  z-index: 2;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  border: none;
+
+  cursor: pointer;
+  z-index: 5;
+
+  transition: transform 0.2s ease;
+}
+
+.arrow img {
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrowLeft {
+  left: -60px;
+}
+
+.arrowRight {
+  right: -60px;
+}
+
+.arrowRight img {
+    rotate: 180deg;
+}
+

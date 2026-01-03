@@ -79,7 +79,7 @@ const App = () => {
         },
         {
             path:"/profile/:id",
-            element: <Profile data={posts} /> // /profile/whateverid -> show Profile
+            element: <Profile session={session} /> // /profile/whateverid -> show Profile
         },
         {
             path:"/create-event",
