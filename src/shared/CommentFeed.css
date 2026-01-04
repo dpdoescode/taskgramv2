@@ -1,0 +1,87 @@
+
+.commentList {
+    position: relative;
+    max-height: 250px;        /* adjust to taste */
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.commentCard {
+    padding: 20px 10px;
+    border-bottom: 1px solid #d0dee9;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.commentProfile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.commentAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #4ECDC4;
+}
+
+.commentUsername {
+    font-family:Avenir, "Century Gothic", sans-serif;
+    font-weight: 400;
+    font-style:normal;
+    font-size: calc(5px + 2vmin);
+    color: #1976D2;
+}   
+
+.commentText { 
+    word-wrap:break-word;
+    overflow-wrap:anywhere;
+    white-space: normal;
+}
+
+
+.commentVotes {
+    color: black;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.commentVotes button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.commentVotes img {
+    width: 20px;
+    height: 20px;
+}
+
+.commentUpvote, .commentDownvote {
+    color: black;
+}
+
+.commentDownvote img {
+    rotate: 180deg;
+}
+
+.commentActions{
+    position: absolute;
+    right: 6px;
+}
+
+.commentActions button {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+}
+
+.commentActions button:hover {
+  color: red;
+}
+

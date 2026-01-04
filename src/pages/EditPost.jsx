@@ -3,7 +3,7 @@ import {useState} from 'react'
 import { useParams } from 'react-router-dom'
 import './EditPost.css'
 
-const EditPost = ({data}) => {
+const EditPost = () => {
     const {id} = useParams()
     const [post, setPost] = useState({
         id:null, 

@@ -1,22 +1,37 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Card.css'
 import more from './more.png'
 import authorPfpBtn from './authorPfpBtn.png'
 import likeBtn from './likeBtn.png'
 import dislikeBtn from './dislikeBtn.png'
 import commentBtn from './commentBtn.png'
+
+import CommentModal from '../shared/CommentModal';
 import { Link } from 'react-router-dom'
 import { supabase } from '../client';
 
-
 const Card = ({post}) =>  {
-  const currentUser = { id: 'test-user-1' };
-
+  const [currentUser, setCurrentUser] = useState(null);
   const [likeCount, setLikeCount] = useState(post.likes_count || 0)
   const [dislikeCount, setDislikeCount] = useState(post.dislikes_count || 0)
   const [userVote, setUserVote] = useState(
     post.post_votes?.find(v => v.user_id === currentUser?.id)?.vote || 0
   );
+  const [showComments, setShowComments] = useState(false);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error(error);
+        return;
+      }
+      setCurrentUser(data.user);
+    };
+
+    getUser();
+  }, []);
+
 
   const handleVote = async (voteValue) => {
     if (!currentUser) return;
@@ -47,11 +62,8 @@ const Card = ({post}) =>  {
       }, { onConflict: ['post_id', 'user_id'] });
   };
 
-
-
-
-
   return (
+    <>
       <div className="Card">
           <Link to={'edit/'+ post.id}>
             <img className="moreButton" alt="edit button" src={more} />
@@ -77,11 +89,20 @@ const Card = ({post}) =>  {
             <button className="dislikeButton" onClick={() => handleVote(-1)}> 
               <img src={dislikeBtn} alt="dislike button"/> {dislikeCount}
             </button>
-            <button className="commentButton">
-              <img src={commentBtn} alt="comment button"/> 1
+            <button className="commentButton" onClick={() => setShowComments(true)}>
+              <img src={commentBtn} alt="comment button" />
             </button>
           </div>
       </div>
+
+      {showComments && (
+        <CommentModal
+          post={post}
+          currentUser={currentUser}
+          onClose={() => setShowComments(false)}
+        />
+      )}
+    </>
   );
 };
 
