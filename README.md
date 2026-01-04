@@ -6,53 +6,119 @@ This web app: **TaskGram is designed to combine discipline with entertainment, p
 
 Time spent: **40** hours spent in total
 
-## Required Features
-
-The following **required** functionality is completed:
-
-- [X] **Web app includes a create form that allows the user to create posts**
-  - Form requires users to add a post title
-  - Forms should have the *option* for users to add: 
-    - additional textual content
-    - an image added as an external image URL
-- [X] **Web app includes a home feed displaying previously created posts**
-  - Web app must include home feed displaying previously created posts
-  - By default, each post on the posts feed should show only the post's:
-    - creation time
-    - title 
-    - upvotes count
-  - Clicking on a post should direct the user to a new page for the selected post
-- [X] **Users can view posts in different ways**
-  - Users can sort posts by either:
-    -  creation time
-    -  upvotes count
-  - Users can search for posts by title
-- [X] **Users can interact with each post in different ways**
-  - The app includes a separate post page for each created post when clicked, where any additional information is shown, including:
-    - content
-    - image
-    - comments
-  - Users can leave comments underneath a post on the post page
-  - Each post includes an upvote button on the post page. 
-    - Each click increases the post's upvotes count by one
-    - Users can upvote any post any number of times
-
-- [X] **A post that a user previously created can be edited or deleted from its post pages**
-  - After a user creates a new post, they can go back and edit the post
-  - A previously created post can be deleted from its post page
-
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented TaskGram:
 
-[![Video Walkthrough](https://img.youtube.com/vi/CQh48UYCkJc/0.jpg)](https://youtu.be/CQh48UYCkJc)
+[![Video Walkthrough](https://img.youtube.com/vi/gxcz9q1kpDQ/0.jpg)](https://youtu.be/gxcz9q1kpDQ)
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with [Kap](https://getkap.co/) for macOS
 
-## Notes
+## Required Features
 
-Describe any challenges encountered while building the app.
+The following required functionality is completed:
+
+[X] Web app includes a create form that allows the user to create posts
+
+Form requires users to add a post title
+
+Forms have the option for users to add:
+
+additional textual content
+
+an image added as an external image URL
+
+Only authenticated users may create posts
+
+[X] Web app includes a home feed displaying previously created posts
+
+Web app includes a home feed displaying all previously created posts
+
+By default, each post on the posts feed shows:
+
+creation time
+
+title
+
+upvotes count
+
+Clicking on a post directs the user to a dedicated post detail page
+
+[X] Users can view posts in different ways
+
+Users can sort posts by either:
+
+creation time
+
+upvotes count
+
+Users can search for posts by title
+
+[X] Users can interact with each post in different ways
+
+The app includes a separate post page for each created post, displaying:
+
+full post content
+
+image (if provided)
+
+comments section
+
+Authenticated users can leave comments underneath a post
+
+Each post includes an upvote button
+
+Each click increases the post's upvotes count by one
+
+Users can upvote any post any number of times
+
+[X] A post that a user previously created can be edited or deleted
+
+Users can edit posts they previously created
+
+Users can delete posts they previously created
+
+Edit/delete controls are restricted to the post author
+
+The following additional features are implemented:
+
+[X] Google Authentication
+
+Users can log in via Supabase Auth using Google
+
+Session is persisted across browser refreshes
+
+[X] Profiles Page
+
+Automatic profile creation (username and avatar) on first login
+
+Profiles are stored in the database and displayed alongside user activity
+
+[X] Create Event Feature
+
+Dedicated page for creating events associated with the user
+
+[X] Comment System with Full CRUD & Voting
+
+Users can create, edit inline, and delete their own comments
+
+Integrated upvote/downvote system for comments
+
+[X] Security & Data Integrity
+
+Row Level Security (RLS) enabled on all tables
+
+Foreign key constraints enforce relational integrity
+
+🚀 Next Steps / Future Enhancements
+Camera Integration: Capture and upload photos directly from the device.
+
+Public Deployment: Full Google OAuth for public access.
+
+Gamification: Implementation of the Streak System and Leaderboard.
+
+Social Features: Friendship System to enable personalized feeds.
+
+Advanced Filtering: Filter by category, tags, or specific users.
 
 ## License
 
